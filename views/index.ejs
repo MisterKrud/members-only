@@ -2,30 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Welcome</title>
 </head>
 <body>
-    <%- include("partials/errors") %>
-    <h3>Sign up</h3>
-    <form action="/signed-up" method="POST">
-        <label for="firstname">First name
-            <input type="text" name="firstname" id="firstname">
-        </label>
-        <label for="lastname">Last Name
-            <input type="text" name="lastname" id="lastname">
-        </label>
-        <br>
-        <label for="username">Email (this will be your username)</label>
-        <input type="email" name="username" id="username" required>
-        <br>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required>
-        <label for="confirmPassword">Confirm password</label>
-        <input type="password" name="confirmPassword" id="confirmPassword" required>
-        <button type="submit">Submit</button>
-    </form>
-    
+    <a href="/login">Member login</a>
+    <a href="/sign-up-form">Sign up</a>
 </body>
 </html>

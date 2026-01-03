@@ -26,7 +26,7 @@ const addUser =  [  userValidator, async(req, res, next) => {
             const {firstname, lastname, username, password, confirmPassword} = matchedData(req)
             const hashedPassword = await bcrypt.hash(password, 10);
             await db.addUser(firstname, lastname, username, hashedPassword);
-            res.render("signup-success", {
+            res.render("success", {
                 firstname: firstname
             })
         } catch(error) {
