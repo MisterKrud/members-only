@@ -23,11 +23,11 @@ const addUser =  [  userValidator, async(req, res, next) => {
        )
     } else {
         try {
-            const {firstname, lastname, username, password, confirmPassword} = matchedData(req)
-            const hashedPassword = await bcrypt.hash(password, 10);
-            await db.addUser(firstname, lastname, username, hashedPassword);
+            const user = matchedData(req)
+            const hashedPassword = await bcrypt.hash(user.password, 10);
+            await db.addUser(user.firstname, user.lastname, user.username, hashedPassword);
             res.render("success", {
-                firstname: firstname
+                firstname: user.firstname
             })
         } catch(error) {
             console.error(error)
@@ -37,6 +37,8 @@ const addUser =  [  userValidator, async(req, res, next) => {
     } 
 }
 ]
+
+
 
 
 module.exports = {

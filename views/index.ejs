@@ -6,7 +6,10 @@
     <title>Welcome</title>
 </head>
 <body>
-    <a href="/login">Member login</a>
+    <% if (locals.user) { %>
+    <h3>Welcome <%=user.username %></h3>
+    <%}%>
+    <a href="/login-form">Member login</a>
     <a href="/sign-up-form">Sign up</a>
 </body>
 </html>
