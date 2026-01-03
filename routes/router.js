@@ -29,6 +29,20 @@ router.get("/admin", isAuth.isAdmin, (req, res) => {
     res.render("admin")
 })
 
+router.get("/site-manager", isAuth.isSiteManager, (req, res) => {
+    res.render("site-manager")
+})
+
+router.get("/logout", (req, res, next) => {
+    req.logout(function(err){
+        if(err) {
+            return next(err);
+        }
+        res.redirect("/");
+    });
+    
+})
+
 
 
 module.exports = router;
