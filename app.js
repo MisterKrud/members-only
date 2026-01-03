@@ -1,5 +1,5 @@
 require("dotenv").config();
-const bcrypt = require("bcrypt.js");
+const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const passport = require("passport");
 const express = require("express");

@@ -44,10 +44,12 @@ input{
   box-shadow: 1px 1px 1px rgb(189, 189, 189);;
   border: .1px solid rgb(189, 189, 189);;
   padding: .5rem;
+  margin: 1rem;
 }
 
 input:hover, input:active{
   background-color: #edf5f7;
+
 }
 
 a{
