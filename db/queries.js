@@ -14,8 +14,24 @@ async function getUserById(id) {
     return rows[0];
 }
 
+async function makeMember(id) {
+    await pool.query("UPDATE users SET role_id =2 WHERE id = $1", [id])
+}
+
+async function makeAdmin(id) {
+    await pool.query("UPDATE users SET role_id = 3 WHERE id = $1", [id])
+}
+
+async function makeSiteManager(id) {
+    await pool.query("UPDATE users SET role_id = 4 WHERE id = $1", [id])
+}
+
+
 module.exports = {
     addUser,
     getUser, 
-    getUserById
+    getUserById,
+    makeMember,
+    makeAdmin,
+    makeSiteManager
 }

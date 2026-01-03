@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs")
 const db = require("../db/queries");
 const { body, validationResult, matchedData } = require("express-validator");
 
+
 const userValidator =[
     body("firstname").trim(),
     body("lastname").trim(),

@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const router = Router();
 const passport = require("../config/passport")
-
 const controllers = require("../controllers/controllers");
+const isAuth = require("../controllers/authMiddleware")
 
 router.get("/", (req, res) => res.render("index"));
 
@@ -20,6 +20,14 @@ router.post("/login", passport.authenticate("local", {
     successRedirect: "success",
     failureRedirect: "/"
 }))
+
+router.get("/members", isAuth.isMember,(req, res) => {
+        res.render("members");
+    })
+
+router.get("/admin", isAuth.isAdmin, (req, res) => {
+    res.render("admin")
+})
 
 
 

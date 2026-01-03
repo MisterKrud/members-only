@@ -8,10 +8,11 @@
 <body>
     <% if (locals.user) {%>
         <h3>Welcome back <%=user.firstname %></h3>
-    <%} else if (firstname) {%>
+    <%} else if (locals.firstname) {%>
     <h3>Welcome <%=firstname%> 2nd</h3>
     <% } else {%>
-        <h3>Welcome</h3>
+        <h3>You can't be here</h3>
     <% } %>
+    <a href="/members">Members only</a>
 </body>
 </html>
