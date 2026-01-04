@@ -13,7 +13,8 @@ const pool = new Pool({
   connectionString: isProd ? process.env.PROD_DB : process.env.DEV_DB,
   ssl: isProd ? {
     require: true,
-  } : false
+  } : false,
+  connectionTimeoutMillis: 5000,
 });
 
 module.exports = pool;
