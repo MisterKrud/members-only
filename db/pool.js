@@ -10,7 +10,7 @@ console.log(`Environment: ${isProd ? 'PRODUCTION (Render)' : 'DEVELOPMENT (WSL)'
 // 3. Pool Configuration
 const pool = new Pool({
   // Use the full string to avoid individual variable conflicts
-  connectionString: isProd ? process.env.PROD_DB : process.env.DEV_DB,
+  connectionString: isProd ? process.env.PGURL : process.env.DEV_DB,
   ssl: isProd ? {
     require: true,
   } : false,
