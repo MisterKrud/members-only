@@ -4,9 +4,13 @@
         <% messages.forEach(message => { %>
             <div class="message-post">
             <h4 class="message-title"><%=message.title%></h4>
+             <% if(locals.user && locals.user.role_id > 1) { %>
+           <h5 class="user-name"><%= message.firstname%> <%=message.lastname%></h5>
+            
+           <%}%>
             <div class="message-text"><%=message.text%></div>
             <% if(locals.user && locals.user.role_id > 1) { %>
-           <div class="user-name"><%= message.firstname%> <%=message.lastname%></div>
+           
             <div class="created-on">Date: <%=message.created%></div>
            <%}%>
            <% if(locals.user && locals.user.role_id > 2) { %>

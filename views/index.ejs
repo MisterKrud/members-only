@@ -13,15 +13,16 @@
     <a href="/sign-up-form">Sign up</a>
     
     <%} else { %>
+         <% if(user.role_id === 4) { %>
+                <a href="/site-manager">site-management</a>
+            <%}%>
          <a href="/logout">Logout</a>
          <div class="index-header">
         <h3>Welcome back <%=user.firstname %></h3>
         <div class="role">
             Status: <%=user.role%>
             </div>
-            <% if(user.role_id === 4) { %>
-                <a href="/site-manager">site-management</a>
-            <%}%>
+           
         </div>
         <% if(locals.user.role_id <= 1) { %>
             <a href="member-upgrade">Upgrade to member</a>
