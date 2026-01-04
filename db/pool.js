@@ -12,7 +12,10 @@ if (isProd) {
 
 const pool = new Pool({
  connectionString: isProd ? process.env.PROD_DB_URL : process.env.DEV_DB_URL,
- ssl: isProd ? { rejectUnauthorized: false } : false
+ ssl: isProd ? {
+    require: true,                   
+    rejectUnauthorized: false        
+  } : false
 });
 
 
