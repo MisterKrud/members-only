@@ -3,6 +3,7 @@ const router = Router();
 const passport = require("../config/passport")
 const controllers = require("../controllers/controllers");
 const messageControllers = require("../controllers/messageControllers")
+const managementControllers = require("../controllers/managementControllers");
 const isAuth = require("../controllers/authMiddleware")
 
 router.get("/", messageControllers.getAllMessages);
@@ -35,9 +36,7 @@ router.get("/admin", isAuth.isAdmin, (req, res) => {
     res.render("admin")
 })
 
-router.get("/site-manager", isAuth.isSiteManager, (req, res) => {
-    res.render("site-manager")
-})
+router.get("/site-manager", isAuth.isSiteManager, managementControllers.displayMainUserTable)
 
 router.get("/logout", (req, res, next) => {
     req.logout(function(err){
@@ -49,9 +48,14 @@ router.get("/logout", (req, res, next) => {
     
 })
 
+//management
+router.post("/:id/delete-user", managementControllers.deleteUser)
+
 //messages
 router.get("/messages", messageControllers.getAllMessages)
 router.post("/new-message", messageControllers.postNewMessage)
+
+
 
 router.get("/failed", (req, res) => res.render("failed"))
 module.exports = router;
