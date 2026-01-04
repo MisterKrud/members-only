@@ -7,34 +7,13 @@
     <title>Site management</title>
 </head>
 <body>
-      <a href="/members">Members</a>
-    <a href="/admin">Admin</a>
+      
+    <a href="/">Home</a>
     <a href="/logout">Logout</a>
     <h1>Site management</h1>
-    <h2>Users:</h2>
-   
-        <table>
-            <tr>
-                <th>id</th>
-                <th>email/username</th>
-                <th>name</th>
-                <th>role</th>
-                <th></th>
-                <th></th>
-            </tr>
-             <% mainUserTable.forEach(user => { %>
-                <tr>
-                <td><%= user.id %></td>
-                <td><%= user.email%></td>
-                <td><%= user.firstname%> <%=user.lastname%></td>
-                <td><%= user.role %></td>
-                <td><a href="/update-user">update</a></td>
-                <td><form action="/<%=user.id%>/delete-user" method="POST">
-                    <button type="submit">Delete</button>
-                </form></td>
-        </tr>
-    <%})%>
-    </table>
+  <%- include ("partials/userTable") %>
+  <hr>
+  <%- include("partials/messagesTable") %>
   
 </body>
 </html>

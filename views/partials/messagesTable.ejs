@@ -1,0 +1,25 @@
+<h2>Messages:</h2>
+   
+        <table>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>message text</th>
+                <th>user</th>
+                <th>name</th>
+                
+                <th></th>
+            </tr>
+             <% messagesTable.forEach(message => { %>
+                <tr>
+                <td><%= message.id %></td>
+                <td><%= message.title%></td>
+                <td class="message-cell"><%= message.text%></td>
+                <td><%= message.email %></td>
+                <td><%= message.name %></td>
+                <td><form action="/<%=message.id%>/delete-message" method="POST">
+                    <button type="submit">Delete</button>
+                </form></td>
+        </tr>
+    <%})%>
+    </table>

@@ -36,7 +36,7 @@ router.get("/admin", isAuth.isAdmin, (req, res) => {
     res.render("admin")
 })
 
-router.get("/site-manager", isAuth.isSiteManager, managementControllers.displayMainUserTable)
+router.get("/site-manager", isAuth.isSiteManager, managementControllers.displayMainTables)
 
 router.get("/logout", (req, res, next) => {
     req.logout(function(err){
@@ -50,6 +50,7 @@ router.get("/logout", (req, res, next) => {
 
 //management
 router.post("/:id/delete-user", managementControllers.deleteUser)
+router.post("/:id/delete-message", managementControllers.deleteMessage)
 
 //messages
 router.get("/messages", messageControllers.getAllMessages)

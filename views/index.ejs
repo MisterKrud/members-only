@@ -14,9 +14,11 @@
     
     <%} else { %>
          <a href="/logout">Logout</a>
+         <div class="index-header">
         <h3>Welcome back <%=user.firstname %></h3>
         <div class="role">
             Status: <%=user.role%>
+            </div>
             <% if(user.role_id === 4) { %>
                 <a href="/site-manager">site-management</a>
             <%}%>
@@ -25,10 +27,12 @@
             <a href="member-upgrade">Upgrade to member</a>
         <%}%>
     <%}%>
+    <div class="messages-container">
  <%- include("partials/messages", {messages}) %>
     <% if(locals.user && locals.user.role_id > 1) {%>
 
 <%-include("partials/new-message") %>
   <% } %>
+  </div>
 </body>
 </html>
