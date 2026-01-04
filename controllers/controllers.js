@@ -23,21 +23,17 @@ const addUser =  [  userValidator, async(req, res, next) => {
         errors: errors.array(),
        }
        )
-    } else {
-        try {
+    } 
             const user = matchedData(req)
             const hashedPassword = await bcrypt.hash(user.password, 10);
             await db.addUser(user.firstname, user.lastname, user.username, hashedPassword);
-            res.redirect("/", {
-                firstname: user.firstname
-            })
-        } catch(error) {
-            console.error(error)
-            return next(error)
-        }
+            const newUser = await db.getUser(user.username)
+            req.login(newUser, (err) => {
+            if (err) return next(err);
+            return res.redirect("/");
+        });
 
     } 
-}
 ]
 
 const memberUpgradeValidator = [
