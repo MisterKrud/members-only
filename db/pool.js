@@ -1,27 +1,19 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 
-
+// 1. Robust Environment Check
 const isProd = process.env.RENDER === 'true' || process.env.NODE_ENV?.trim() === 'production';
 
-let pool;
+// 2. Clear Logging (helps you debug the Render console)
+console.log(`Environment: ${isProd ? 'PRODUCTION (Render)' : 'DEVELOPMENT (WSL)'}`);
 
-if (isProd) {
-
-  pool = new Pool({
-    connectionString: process.env.PROD_DB,
-    ssl: {
-      rejectUnauthorized: false, 
-    },
-  });
-  console.log('\x1b[41m%s\x1b[0m', ' >>> PROD: Connected to Neon ');
-} else {
-  // Use local settings for Dev (WSL)
-  pool = new Pool({
-    connectionString: process.env.DEV_DB,
-    ssl: false
-  });
-  console.log('\x1b[42m%s\x1b[0m', ' >>> DEV: Connected to Local ');
-}
+// 3. Pool Configuration
+const pool = new Pool({
+  // Use the full string to avoid individual variable conflicts
+  connectionString: isProd ? process.env.PROD_DB : process.env.DEV_DB,
+  ssl: isProd ? {
+    rejectUnauthorized: false
+  } : false
+});
 
 module.exports = pool;
