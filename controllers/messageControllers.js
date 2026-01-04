@@ -5,11 +5,10 @@ const { body, validationResult, matchedData } = require("express-validator");
 
 const getAllMessages = async(req, res) => {
     const  messages  = await db.getAllMessages();
-    console.log(req.user)
-    // console.log(req.user.role_id)
+   
     res.render("index", {
         user: req.user,
-        // role_id: req.user.role_id,
+     
         messages: messages
     })
 }
