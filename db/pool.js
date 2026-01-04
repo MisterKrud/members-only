@@ -12,7 +12,7 @@ const pool = new Pool({
   // Use the full string to avoid individual variable conflicts
   connectionString: isProd ? process.env.PROD_DB : process.env.DEV_DB,
   ssl: isProd ? {
-    rejectUnauthorized: false
+    require: true,
   } : false
 });
 
