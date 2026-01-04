@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execution failed</title>
+</head>
+<body>
+    <h3>Error: Execution failed</h3>
+    <% if(locals.errors) { %>
+        <%- include("partials/errors") %>
+    <%}%>
+    <a href="/">Home</a>
+</body>
+</html>

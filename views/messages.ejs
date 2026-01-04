@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="messages">
+    <% if (locals.messages) { %>
+        <% messages.forEach(message => { %>
+            <div class="message-post">
+            <h4 class="message-title"><%=message.title%></h4>
+            <div class="message-text"><%=message.text%></div>
+            <% if(locals.user) {%>
+            <div class="user-name"><%= message.firstname%> <%=message.lastname%></div>
+            <div class="created-on">Date: <%=message.created%></div>
+            <%}%>
+            </div>
+            
+       <% }); %>
+
+    <%}%>
+</div>
+</body>
+</html>
+

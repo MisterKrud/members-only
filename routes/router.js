@@ -2,9 +2,11 @@ const { Router } = require("express");
 const router = Router();
 const passport = require("../config/passport")
 const controllers = require("../controllers/controllers");
+const messageControllers = require("../controllers/messageControllers")
 const isAuth = require("../controllers/authMiddleware")
 
-router.get("/", (req, res) => res.render("index"));
+router.get("/", messageControllers.getAllMessages);
+
 
 router.get("/login-form", (req, res)=> res.render("login-form"));
 router.get("/sign-up-form", (req, res) => res.render("sign-up-form"));
@@ -17,9 +19,13 @@ router.get("/success", (req, res) => res.render("success", {
 }));
 
 router.post("/login", passport.authenticate("local", {
-    successRedirect: "success",
+    successRedirect: "/",
     failureRedirect: "/"
 }))
+
+router.get("/member-upgrade", (req, res) => res.render("member-upgrade"))
+
+router.post("/upgrade-to-member", controllers.memberUpgrade)
 
 router.get("/members", isAuth.isMember,(req, res) => {
         res.render("members");
@@ -43,6 +49,9 @@ router.get("/logout", (req, res, next) => {
     
 })
 
+//messages
+router.get("/messages", messageControllers.getAllMessages)
+router.post("/new-message", messageControllers.postNewMessage)
 
-
+router.get("/failed", (req, res) => res.render("failed"))
 module.exports = router;

@@ -1,0 +1,16 @@
+<div class="messages">
+     <h3>Messages</h3>
+    <% if (locals.messages) { %>
+        <% messages.forEach(message => { %>
+            <div class="message-post">
+            <h4 class="message-title"><%=message.title%></h4>
+            <div class="message-text"><%=message.text%></div>
+            <% if(locals.user && locals.user.role_id > 1) { %>
+           <%- include("messages-details", {messages})%>
+           <%}%>
+            </div>
+            
+       <% }); %>
+
+    <%}%>
+</div>

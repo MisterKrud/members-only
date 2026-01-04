@@ -5,12 +5,13 @@ async function addUser(firstname, lastname, email, password) {
 }
 
 async function getUser(username) {
-    const {rows} = await pool.query("SELECT * FROM users WHERE username = $1", [username])
+    const {rows} = await pool.query("SELECT users.id, users.username, users.password, users.firstname, users.lastname, users.role_id, roles.name as role  FROM users JOIN roles ON (users.role_id=roles.id) WHERE users.username = $1", [username])
+    console.log(rows[0])
     return rows[0];
 }
 
 async function getUserById(id) {
-    const {rows} = await pool.query("SELECT * FROM users WHERE id = $1", [id])
+    const {rows} = await pool.query("SELECT users.id, users.username, users.password, users.firstname, users.lastname, users.role_id, roles.name as role FROM users JOIN roles ON (users.role_id=roles.id) WHERE users.id = $1", [id])
     return rows[0];
 }
 
@@ -25,6 +26,16 @@ async function makeAdmin(id) {
 async function makeSiteManager(id) {
     await pool.query("UPDATE users SET role_id = 4 WHERE id = $1", [id])
 }
+//messages
+
+async function getAllMessages() {
+    const { rows } = await pool.query("SELECT messages.title, messages.text, users.firstname, users.lastname, messages.created FROM messages JOIN users ON users.id = messages.user_id");
+    return rows;
+}
+
+async function postNewMessage(title, text, user_id){
+    await pool.query("INSERT INTO messages (title, text, user_id) VALUES($1, $2, $3)", [title, text, user_id])
+}
 
 
 module.exports = {
@@ -33,5 +44,7 @@ module.exports = {
     getUserById,
     makeMember,
     makeAdmin,
-    makeSiteManager
+    makeSiteManager, 
+    getAllMessages,
+    postNewMessage
 }

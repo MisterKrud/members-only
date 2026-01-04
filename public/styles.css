@@ -40,7 +40,7 @@ button:active{
   transform: translate(1px);
 }
 
-input{
+input, textarea{
   box-shadow: 1px 1px 1px rgb(189, 189, 189);;
   border: .1px solid rgb(189, 189, 189);;
   padding: .5rem;
@@ -58,5 +58,21 @@ a{
 }
 
 nav{
+  margin: 1rem;
+}
+
+label{display: block;}
+
+.messages{
+  padding: 1rem;
+  border: .5px gray solid;
+  width:fit-content;
+  margin: 1rem;
+
+}
+
+.message-post{
+  padding: 1rem;
+  background-color: antiquewhite;
   margin: 1rem;
 }

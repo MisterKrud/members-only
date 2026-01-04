@@ -13,13 +13,14 @@
     <% } else {%>
         <h3>You can't be here</h3>
     <% } %>
-    <% if(locals.user.role_id >=2) { %>
+    <a href="/">Home</a>
+    <% if(locals.user && locals.user.role_id >=2) { %>
     <a href="/members">Members only</a>
     <%}%>
-     <% if(locals.user.role_id >=3) { %>
+     <% if(locals.user && locals.user.role_id >=3) { %>
     <a href="/admin">Admin</a>
     <%}%>
-     <% if(locals.user.role_id >=4) { %>
+     <% if(locals.user && locals.user.role_id >=4) { %>
     <a href="/site-manager">Site management</a>
     <%}%>
     <a href="/logout">Logout</a>
